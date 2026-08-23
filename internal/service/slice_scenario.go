@@ -7,8 +7,11 @@ import (
 	"readinglog/internal/parser"
 )
 
+// delayedExcerptReceipt 返回一个延迟回执闭包。
+// 捕获时即对 Payload 做独立拷贝，之后调用方对原 batch.Payload 的修改不会影响回执返回的值。
 func delayedExcerptReceipt(batch model.ExcerptBatch) func() string {
-	return func() string { return string(batch.Payload) }
+	snapshot := batch.Clone()
+	return func() string { return string(snapshot.Payload) }
 }
 
 func RunSliceScenario() model.SliceScenarioResult {
