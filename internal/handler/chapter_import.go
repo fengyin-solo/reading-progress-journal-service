@@ -8,6 +8,10 @@ import (
 )
 
 func ChapterImportScenario(w http.ResponseWriter, r *http.Request) {
-	result, _ := service.RunChapterImport()
+	result, err := service.RunChapterImport()
+	if err != nil {
+		httpx.JSON(w, http.StatusBadRequest, 400, err.Error(), result)
+		return
+	}
 	httpx.OK(w, result)
 }

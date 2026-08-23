@@ -37,6 +37,9 @@ func (r *ChapterReader) Close() error {
 		return nil
 	}
 	r.closed = true
+	if r.tracker != nil {
+		r.tracker.open--
+	}
 	return nil
 }
 
