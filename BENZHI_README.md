@@ -1,3 +1,5 @@
+基于 Go 实现的阅读记录管理后端服务，提供书籍、书架、读书笔记、书摘与阅读进度管理。
+
 # reading-progress-journal-service__009
 
 ## 构建镜像
